@@ -255,7 +255,7 @@ class MultiColumnTfidfVectorizer(BaseEstimator, VectorizerMixin, TransformerMixi
                 )
             return tfidf_features
         # If ``TfidfVectorizer`` threw a value error, add an empty TF-IDF document-term matrix for the column
-        return sp.csr_matrix((X.shape[0], 0))
+        return sp.csr_matrix((X.shape[0], 1))
 
     def transform(self, X, y=None):
         """Transform documents to document term-matrix.

@@ -85,9 +85,9 @@ def test_multi_column_tfidf_vectorizer_vocabulary_sizes_error():
 @pytest.mark.parametrize(
     "kwargs, data, shape",
     [
-        ({"min_df": 0.9}, corpus, (4, 0)),
-        ({"max_df": 0.1}, corpus, (4, 0)),
-        ({"max_df": 0.9941}, np.array([[""], [""], [""]]), (3, 0)),
+        ({"min_df": 0.9}, corpus, (4, 2)),
+        ({"max_df": 0.1}, corpus, (4, 2)),
+        ({"max_df": 0.9941}, np.array([[""], [""], [""]]), (3, 1)),
     ],
 )
 def test_multi_column_tfidf_vectorizer_zero_output_tokens_ignore_zero_vocab_on(kwargs, data, shape):
@@ -112,7 +112,7 @@ def test_multi_column_tfidf_vectorizer_zero_output_tokens_ignore_zero_vocab_off(
         vec.fit_transform(data)
 
 
-@pytest.mark.parametrize("kwargs, output_shape", [({"min_df": 0.9}, (4, 3)), ({"max_df": 0.9}, (4, 8))])
+@pytest.mark.parametrize("kwargs, output_shape", [({"min_df": 0.9}, (4, 4)), ({"max_df": 0.9}, (4, 9))])
 def test_multi_column_tfidf_vectorizer_one_column_zero_output_tokens(kwargs, output_shape):
     """Tests that a TF-IDF document-term matrix is still returned when only one column breaks"""
     corpus = np.array(
